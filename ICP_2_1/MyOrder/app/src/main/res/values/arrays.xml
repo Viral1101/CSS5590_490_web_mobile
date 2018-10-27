@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="crust_array">
+        <item>@string/thin</item>
+        <item>@string/hand</item>
+        <item>@string/pan</item>
+    </string-array>
+    <string-array name="size_array">
+        <item>@string/personal</item>
+        <item>@string/medium</item>
+        <item>@string/large</item>
+        <item>@string/xtra</item>
+    </string-array>
+
+</resources>

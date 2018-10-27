@@ -1,0 +1,34 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">My Order</string>
+    <string name="name">Name</string>
+    <string name="toppings">Toppings</string>
+    <string name="extra_cheese">Extra Cheese</string>
+    <string name="pepperoni">Pepperoni</string>
+    <string name="hawaiian">Hawaiian</string>
+    <string name="crust">Crust Type</string>
+    <string name="thin">Thin Crust</string>
+    <string name="hand">Hand Tossed</string>
+    <string name="pan">Pan</string>
+    <string name="size">Size</string>
+    <string name="personal">10\"</string>
+    <string name="medium">14\"</string>
+    <string name="large">18\"</string>
+    <string name="xtra">20\"</string>
+    <string name="quantity">Quantity</string>
+    <string name="initial_quantity_value">1</string>
+    <string name="order">Order</string>
+    <string name="order_summary_name">Name:<xliff:g example="Vijaya" id="name">%s</xliff:g></string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="order_summary_extra_cheese">Add Extra Cheese? <xliff:g example="yes" id="addExtraCheese">%s</xliff:g></string>
+    <string name="order_summary_pepperoni">Add Pepperoni? <xliff:g example="yes" id="addPepperoni">%s</xliff:g></string>
+    <string name="order_summary_hawaiian">Add Pineapple and Ham? <xliff:g example="yes" id="addHawaiian">%s</xliff:g></string>
+    <string name="order_summary_size">Size: <xliff:g example='14"' id="size">%s</xliff:g></string>
+    <string name="order_summary_crust">Type of Crust: <xliff:g example="Thin" id="crust">%s</xliff:g></string>
+    <string name="order_summary_quantity">Quantity: <xliff:g example="2" id="quantity">%d</xliff:g></string>
+    <string name="order_summary_total_price">Total: $ <xliff:g example="10" id="price">%.2f</xliff:g></string>
+    <string name="thank_you">Thank you!</string>
+    <string name="too_much_pizza">Please select less than one hundred pizzas</string>
+    <string name="too_little_pizza">Please select at least one pizza</string>
+    <string name="strings">\@string/personal</string>
+</resources>
