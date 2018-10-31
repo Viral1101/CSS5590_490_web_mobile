@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8100e10c-96db-44a1-939c-8d6b7f27bf48" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Lab2/TicTacToe/app/CSS/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab2/TicTacToe/app/CSS/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,52 +17,64 @@
     <session id="-1706409930">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.29" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="html" value="1" />
+          <entry key="html" value="4" />
           <entry key="jpg" value="4" />
-          <entry key="js" value="1" />
+          <entry key="js" value="2" />
           <entry key="png" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="HTML" value="1" />
+          <entry key="HTML" value="4" />
           <entry key="Image" value="5" />
-          <entry key="JavaScript" value="1" />
+          <entry key="JavaScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="324" />
-          <entry key="html" value="122" />
-          <entry key="js" value="134" />
-          <entry key="txt" value="42" />
+          <entry key="html" value="154" />
+          <entry key="js" value="800" />
+          <entry key="txt" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="324" />
-          <entry key="HTML" value="122" />
-          <entry key="JavaScript" value="134" />
-          <entry key="PLAIN_TEXT" value="42" />
+          <entry key="HTML" value="154" />
+          <entry key="JavaScript" value="800" />
+          <entry key="PLAIN_TEXT" value="55" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/css/app.css">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lab3/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="-422">
+              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Lab3/js/search.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -91,6 +102,8 @@
         <option value="$PROJECT_DIR$/Lab2/TicTacToe/app/app.js" />
         <option value="$PROJECT_DIR$/Lab2/TicTacToe/app/CSS/app.css" />
         <option value="$PROJECT_DIR$/Lab2/TicTacToe/app/index.html" />
+        <option value="$PROJECT_DIR$/Lab3/index.html" />
+        <option value="$PROJECT_DIR$/Lab3/js/search.js" />
       </list>
     </option>
   </component>
@@ -172,7 +185,7 @@
       <path value="$PROJECT_DIR$/ICP_6/MEAN_Stack_App/node_modules/vary/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="140" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -186,6 +199,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,61 +210,18 @@
             <path>
               <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
               <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="ICP_4" type="462c0819:PsiDirectoryNode" />
+              <item name="Lab3" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
               <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="ICP_4" type="462c0819:PsiDirectoryNode" />
-              <item name="Todo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="Lab2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="Lab2" type="462c0819:PsiDirectoryNode" />
-              <item name="TicTacToe" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="Lab2" type="462c0819:PsiDirectoryNode" />
-              <item name="TicTacToe" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="Lab2" type="462c0819:PsiDirectoryNode" />
-              <item name="TicTacToe" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="Lab2" type="462c0819:PsiDirectoryNode" />
-              <item name="TicTacToe" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CSS5590_490_web_mobile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CSS5590_490_web_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="Lab2" type="462c0819:PsiDirectoryNode" />
-              <item name="TicTacToe" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Lab3" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,6 +258,8 @@
       <option name="presentableId" value="Default" />
       <updated>1538520806873</updated>
       <workItem from="1538520809205" duration="6178000" />
+      <workItem from="1539105923395" duration="159000" />
+      <workItem from="1540912260924" duration="7493000" />
     </task>
     <task id="LOCAL-00001" summary="updating look and feel - in progress">
       <created>1538526935803</created>
@@ -295,22 +268,26 @@
       <option name="project" value="LOCAL" />
       <updated>1538526935803</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="working model">
+      <created>1540921086988</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1540921086988</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6178000" />
+    <option name="totallyTimeSpent" value="13830000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="140" y="20" width="1400" height="970" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496329" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297491" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -318,6 +295,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3297491" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -331,7 +312,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updating look and feel - in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating look and feel - in progress" />
+    <MESSAGE value="working model" />
+    <option name="LAST_COMMIT_MESSAGE" value="working model" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/Images/tic_tac_toe.jpg">
@@ -347,13 +329,6 @@
     <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/Images/blue_balloon.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1139">
@@ -363,8 +338,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="952">
+          <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab2/TicTacToe/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab2/YouTube/youtubesearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab3/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-422">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab3/js/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
         </state>
       </provider>
     </entry>
