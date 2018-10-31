@@ -1,4 +1,4 @@
-var url = "https://www.googleapis.com/youtube/v3/";
+var url = "https://www.googleapis.com/youtube/v3/subscriptions";
 var apiKey = "AIzaSyBhAcbOBlU7lepVO-jyqtq7g1j9lRhT-_c";
 let videoString = "https://www.youtube.com/embed/";
 

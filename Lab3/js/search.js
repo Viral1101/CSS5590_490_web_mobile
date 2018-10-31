@@ -17,40 +17,52 @@ angular.module('searchApp', [])
             console.log("search clicked");
             let q = $scope.query; //get the search term from the input field
             if (q != null && q !== "") { //check if there is input in the field to search
+
+                //API call to get the channelID from the user name
                 let handler = $http.get(getChannelURL +
                     "&forUsername=" + $scope.query +
                     "&key=" + apiKey);
                 handler.success(function (response) { //if the call was successful
+
+                    //get the channel details from the JSON to set later so that the page
+                    // isn't distorted by updating it too soon
                     var channelTitle = response.items["0"].snippet.title;
                     var channelID = response.items["0"].id;
                     var thumbnail = response.items["0"].snippet.thumbnails.medium.url;
                     var description = response.items["0"].snippet.description;
 
+                    //Define a sub api call to get the subscription list of the channel by using the id
+                    // obtained in the previous API call
                     let subsHandler = $http.get(subsURL +
                         "&channelId=" + channelID +
                         "&key=" + apiKey +
                         "&maxResults=" + 50);
                     subsHandler.success(function (response) { //if the call was successful
-                        $scope.transit();
-                        $scope.channelTitle = channelTitle;
-                        $scope.thumbnail = thumbnail;
-                        $scope.description = description;
-                        $scope.bubbles(response);
+                        $scope.transit(); //move the logo and search bar out of the way
+                        $scope.channelTitle = channelTitle; //
+                        $scope.thumbnail = thumbnail;       //set the channel variables to display in the media object
+                        $scope.description = description;   //
+                        $scope.bubbles(response);           //**call the d3 function to create the bubble svg
                         console.log(response.kind);
                     });
+                    //Some channels do not permit seeing their subscription list, so the page needs to be reset
                     subsHandler.error(function (response) {
-                        $scope.channelTitle = "";
-                        $scope.thumbnail = "";
-                        $scope.description = "";
-                        $scope.transitBack();
-                        $scope.bubbles(response);
+                        $scope.channelTitle = "";   //
+                        $scope.thumbnail = "";      //clear channel variables
+                        $scope.description = "";    //
+                        $scope.transitBack();       //put the logo back in the middle
+                        $scope.bubbles(response);   //remove the bubble svg
                         alert(response.error.message)
                     });
                     //$scope.searchResult = response.items; //store the items section of the returned JSON for ng-repeat
                 });
+                //handler if the user is not found
                 handler.error(function (response) {
-                    $scope.transitBack();
-                    $scope.bubbles(response);
+                    $scope.channelTitle = "";   //
+                    $scope.thumbnail = "";      //clear channel variables
+                    $scope.description = "";    //
+                    $scope.transitBack();       //put the logo back in the middle
+                    $scope.bubbles(response);   //remove the bubble svg
                     alert(response.error.message)
                 });
             }
@@ -72,20 +84,18 @@ angular.module('searchApp', [])
 
         $scope.bubbles = function(json) {
 
-            // Fake JSON data
-            /*var json = {"countries_msg_vol": {
-                   "CA": 170, "US": 393, "BB": 12, "CU": 9, "BR": 89, "MX": 192, "PY": 32, "UY": 9, "VE": 25, "BG": 42, "CZ": 12, "HU": 7, "RU": 184, "FI": 42, "GB": 162, "IT": 87, "ES": 65, "FR": 42, "DE": 102, "NL": 12, "CN": 92, "JP": 65, "KR": 87, "TW": 9, "IN": 98, "SG": 32, "ID": 4, "MY": 7, "VN": 8, "AU": 129, "NZ": 65, "GU": 11, "EG": 18, "LY": 4, "ZA": 76, "A1": 2, "Other": 254
-               }};*/
-
-            d3.selectAll("svg").remove();
-            if(json.error) return;
+            d3.selectAll("svg").remove();   //clear out any previous graph
+            d3.selectAll("div.tooltip").remove();   //remove previous tooltip div
+            if(json.error) return;          //end the function if in an error condition
 
             var diameter = 600;
 
+            //create the svg object and add the <svg> tag to the page
             var svg = d3.select('#graph').append('svg')
                 .attr('width', diameter)
                 .attr('height', diameter);
 
+            //load the information
             var bubble = d3.layout.pack()
                 .size([diameter, diameter])
                 .value(function (d) {
@@ -105,6 +115,7 @@ angular.module('searchApp', [])
             var vis = svg.selectAll('circle')
                 .data(nodes);
 
+            //create the div object to relocate when the bubbles are moused over/out
             var div = d3.select("body").append("div")
                 .attr("class", "tooltip")
                 .style("opacity", 0);
@@ -120,9 +131,9 @@ angular.module('searchApp', [])
                     return d.className;
                 })
                 .style("fill",function() {
-                    return "hsl(" + Math.random() * 360 + ",100%,50%)";
+                    return "hsl(" + Math.random() * 360 + ",100%,50%)"; //random color generator
                 })
-                .on("mouseover", function(d) {
+                .on("mouseover", function(d) {          //move the tooltip div and set the values when mousing over a bubble
                     div.transition()
                         .duration(200)
                         .style("opacity", .9);
@@ -130,7 +141,7 @@ angular.module('searchApp', [])
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 })
-                .on("mouseout", function(d) {
+                .on("mouseout", function(d) {           //hide the tooltip on mouseout
                     div.transition()
                         .duration(500)
                         .style("opacity", 0);
@@ -141,16 +152,18 @@ angular.module('searchApp', [])
 
                 var newDataSet = [];
 
+                //create an empty object if an error state gets through
                 if(data.error) return {children: newDataSet.push({name: "", className: "", size: 0})};
 
+                //Gather the channel titles and the number of videos they have
                 var titles = obj.items.map(function(d) {return d.snippet.title});
                 var counts = obj.items.map(function(d) {return d.contentDetails.totalItemCount});
 
+                //build the object to store and access later
                 for (var i=0; i< titles.length; i++) {
                     newDataSet.push({
                         name: titles[i],
                         className: titles[i].toLowerCase(),
-                        effect: "jello",
                         size: counts[i]
                     });
                 }
