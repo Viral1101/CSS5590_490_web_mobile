@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fdbd9187-bcbd-4e5d-bdf9-18b9abb95bb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D3_Tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3_Tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab2/YouTube/js/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab2/YouTube/js/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab3/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab3/js/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3/js/search.js" afterDir="false" />
-    </list>
+    <list default="true" id="fdbd9187-bcbd-4e5d-bdf9-18b9abb95bb2" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -200,7 +193,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
