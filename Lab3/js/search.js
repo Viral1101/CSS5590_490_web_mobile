@@ -1,7 +1,6 @@
 var apiKey = "AIzaSyBhAcbOBlU7lepVO-jyqtq7g1j9lRhT-_c";
 var getChannelURL = "https://www.googleapis.com/youtube/v3/channels?part=id%2Csnippet%2Cstatistics%2CcontentDetails";
 var subsURL = "https://www.googleapis.com/youtube/v3/subscriptions?part=snippet%2CcontentDetails&";
-//var url = "https://www.googleapis.com/youtube/v3/";
 
 angular.module('searchApp', [])
 
@@ -22,32 +21,54 @@ angular.module('searchApp', [])
                     "&forUsername=" + $scope.query +
                     "&key=" + apiKey);
                 handler.success(function (response) { //if the call was successful
-                    $scope.channelTitle = response.items["0"].snippet.title;
+                    var channelTitle = response.items["0"].snippet.title;
                     var channelID = response.items["0"].id;
+                    var thumbnail = response.items["0"].snippet.thumbnails.medium.url;
+                    var description = response.items["0"].snippet.description;
 
                     let subsHandler = $http.get(subsURL +
                         "&channelId=" + channelID +
                         "&key=" + apiKey +
                         "&maxResults=" + 50);
                     subsHandler.success(function (response) { //if the call was successful
-
+                        $scope.transit();
+                        $scope.channelTitle = channelTitle;
+                        $scope.thumbnail = thumbnail;
+                        $scope.description = description;
                         $scope.bubbles(response);
                         console.log(response.kind);
                     });
                     subsHandler.error(function (response) {
+                        $scope.channelTitle = "";
+                        $scope.thumbnail = "";
+                        $scope.description = "";
+                        $scope.transitBack();
                         $scope.bubbles(response);
                         alert(response.error.message)
                     });
                     //$scope.searchResult = response.items; //store the items section of the returned JSON for ng-repeat
                 });
                 handler.error(function (response) {
+                    $scope.transitBack();
                     $scope.bubbles(response);
                     alert(response.error.message)
                 });
             }
         };
 
+        $scope.transit = function(){
+            $('.logo').css("position", "relative");
+            $('.logo').css("top", "0");
+            $('.logo').css("left", "0");
+            $('.logo').css("transform", "translate(0%,0%)");
+        }
 
+        $scope.transitBack = function(){
+            $('.logo').css("position", "absolute");
+            $('.logo').css("top", "50%");
+            $('.logo').css("left", "50%");
+            $('.logo').css("transform", "translate(-50%,-50%)");
+        }
 
         $scope.bubbles = function(json) {
 
@@ -129,6 +150,7 @@ angular.module('searchApp', [])
                     newDataSet.push({
                         name: titles[i],
                         className: titles[i].toLowerCase(),
+                        effect: "jello",
                         size: counts[i]
                     });
                 }

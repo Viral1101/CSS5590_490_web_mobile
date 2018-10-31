@@ -1,0 +1,19 @@
+
+
+.logo{
+    position: absolute;
+    height: available;
+    width: 100%;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.logo2{
+    position: absolute;
+    height: available;
+    width: 100%;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}

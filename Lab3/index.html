@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="CSS/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/search.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
@@ -40,7 +47,7 @@
             <div class="d-flex">
                 <div class="row justify-content-center" style="height: 100px;">
                     <!-- When using the YouTube logo, one must be careful not to distort the image -->
-                    <img class="d-flex" src="images/Twitter_Logo_Blue.png" style="height: 100%; width: auto;"/>
+                    <img class="d-flex" src="images/yt_logo_rgb_light.png" style="height: 100%; width: auto;"/>
                 </div>
             </div>
         </div>
@@ -59,12 +66,42 @@
                 </div>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="d-flex mt-3">
+                <div class="row justify-content-center">
+                    <em>Visualize channel subscriptions by the number of videos they have</em>
+                </div>
+            </div>
+        </div>
     </div>
-    <h1>{{channelTitle}}</h1>
+    <div class="">
+        <div class="row justify-content-center">
+            <div class="media">
+                <!-- Pull the thumbnail from the JSON and display it -->
+                <img class="d-flex mr-3" src="{{thumbnail}}"/>
+                <div class="media-body mr-3">
+                    <!-- Get the title and video description from the JSON item and display them inside a media object -->
+                    <h5 class="mt-0 font-weight-bold">{{channelTitle}}</h5>
+                    {{description}}
+                    <section id="graph"></section>
+                </div>
+            </div>
+            <h1></h1>
+        </div>
+    </div>
+
 </div>
 
-<section id="graph"></section>
 
+
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
 </body>
 </html>
