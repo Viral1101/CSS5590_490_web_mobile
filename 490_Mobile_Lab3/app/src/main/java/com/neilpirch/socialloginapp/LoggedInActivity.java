@@ -29,39 +29,7 @@ public class LoggedInActivity extends AppCompatActivity {
 
 
 
-        GraphRequest request = new GraphRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/me",
-                null,
-                HttpMethod.GET,
-                new GraphRequest.Callback() {
-                    public void onCompleted(GraphResponse response) {
-                        /* handle the result */
-                        try {
-                            id = response.getJSONObject().getString("id");
-                            name = response.getJSONObject().getString("name");
-                            email = response.getJSONObject().getString("email");
-                            gender = response.getJSONObject().getString("gender");
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-        );
-
-        editTextUser.setText(name);
-        editTextEmail.setText(email);
-        editTextGender.setText(gender);
-
-
-        ProfilePictureView profilePictureView;
-
-        profilePictureView = (ProfilePictureView) findViewById(R.id.friendProfilePicture);
-
-        profilePictureView.setProfileId(id);
-
+        
         setContentView(R.layout.activity_logged_in);
     }
 
