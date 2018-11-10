@@ -19,6 +19,25 @@ angular.module('searchApp', [])
             if (q != null && q !== "") { //check if there is input in the field to search
 
                 //API call to get the channelID from the user name
+                //let handler = $http.post("http://192.168.99.100:8090/data/" +
+                //    "us.json");
+                let handler = $http.get("http://192.168.99.100:8090/jobs?appName=test&classPath=spark.jobserver.WordCountExample" +
+                "&input.string=" + $scope.query);
+                handler.success(function (response) { //if the call was successful
+                    console.log(response)
+                })
+                handler.error(function (response) {
+                    console.log(response)
+                })
+            }
+        };
+
+        $scope.OlDsearch = function () {
+            console.log("search clicked");
+            let q = $scope.query; //get the search term from the input field
+            if (q != null && q !== "") { //check if there is input in the field to search
+
+                //API call to get the channelID from the user name
                 let handler = $http.get(getChannelURL +
                     "&forUsername=" + $scope.query +
                     "&key=" + apiKey);

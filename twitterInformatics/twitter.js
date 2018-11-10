@@ -10,10 +10,10 @@ var T = new Twit({
     strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
 
-mongoose.connect('mongodb://localhost/twitter');
+mongoose.connect('mongodb://localhost/medicaid');
 var Schema = mongoose.Schema;
 var userSchema = new Schema({}, {"strict": false});
-var User = mongoose.model('User', userSchema, 'tweets');
+var User = mongoose.model('User', userSchema, 'prescriptions');
 
 module.exports = User;
 
