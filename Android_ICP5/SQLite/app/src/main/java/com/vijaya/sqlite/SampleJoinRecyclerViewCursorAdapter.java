@@ -58,6 +58,8 @@ public class SampleJoinRecyclerViewCursorAdapter extends RecyclerView.Adapter<Sa
             calendar.setTimeInMillis(cursor.getLong(
                     cursor.getColumnIndexOrThrow(SampleDBContract.Employer.COLUMN_FOUNDED_DATE)));
             itemBinding.foundedLabel.setText(new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
+
+
         }
     }
 

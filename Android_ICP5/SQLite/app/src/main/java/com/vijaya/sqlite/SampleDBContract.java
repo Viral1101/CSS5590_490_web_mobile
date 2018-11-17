@@ -4,10 +4,20 @@ import android.provider.BaseColumns;
 
 public final class SampleDBContract {
 
+    public static final String GET_EMPLOYEE_ID = "SELECT " + Employee._ID + " FROM " + Employee.TABLE_NAME
+            + " WHERE " + Employee.COLUMN_FIRSTNAME + " like ? AND " + Employee.COLUMN_LASTNAME + " like ?";
+
+    public static final String GET_EMPLOYER_ID = "SELECT " + Employer._ID + " FROM " + Employer.TABLE_NAME
+            + " WHERE " + Employer.COLUMN_NAME + " like ? AND " + Employer.COLUMN_DESCRIPTION + " like ?";
+
     public static final String SELECT_EMPLOYEE_WITH_EMPLOYER = "SELECT * " +
             "FROM " + Employee.TABLE_NAME + " ee INNER JOIN " + Employer.TABLE_NAME + " er " +
             "ON ee." + Employee.COLUMN_EMPLOYER_ID + " = er." + Employer._ID + " WHERE " +
             "ee." + Employee.COLUMN_FIRSTNAME + " like ? AND ee." + Employee.COLUMN_LASTNAME + " like ?";
+
+    public static final String SELECT_EMPLOYER = "SELECT * " +
+            "FROM " + Employer.TABLE_NAME + " er " +
+            " WHERE " + "er." + Employer.COLUMN_NAME + " like ? AND er." + Employer.COLUMN_DESCRIPTION + " like ?";
 
     private SampleDBContract() {
     }

@@ -4,9 +4,12 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -41,6 +44,43 @@ public class EmployerActivity extends AppCompatActivity {
                 readFromDB();
             }
         });
+
+        binding.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteFromDB();
+            }
+        });
+/*
+        binding.updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateDB();
+            }
+        });
+*/
+    }
+
+    private void updateDB(){
+
+    }
+
+    private void deleteFromDB(){
+        String name = binding.nameEditText.getText().toString();
+        String desc = binding.descEditText.getText().toString();
+
+        SQLiteDatabase database = new SampleDBSQLiteHelper(this).getWritableDatabase();
+
+        String selection =
+                SampleDBContract.Employer.COLUMN_NAME + " like ? and " +
+                        SampleDBContract.Employer.COLUMN_DESCRIPTION + " like ?";
+
+        String[] selectionArgs = {"%" + name + "%", "%" + desc + "%"};
+
+        long newRowId = database.delete(SampleDBContract.Employer.TABLE_NAME, selection, selectionArgs);
+        readFromDB();
+
+        Toast.makeText(this, "Deleted Row Id: " + newRowId, Toast.LENGTH_LONG).show();
     }
 
     private void saveToDB() {
@@ -68,42 +108,20 @@ public class EmployerActivity extends AppCompatActivity {
     private void readFromDB() {
         String name = binding.nameEditText.getText().toString();
         String desc = binding.descEditText.getText().toString();
-        long date = 0;
-
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime((new SimpleDateFormat("dd/MM/yyyy")).parse(
-                    binding.foundedEditText.getText().toString()));
-            date = calendar.getTimeInMillis();
-        } catch (Exception e) {
-        }
 
         SQLiteDatabase database = new SampleDBSQLiteHelper(this).getReadableDatabase();
 
-        String[] projection = {
-                SampleDBContract.Employer._ID,
-                SampleDBContract.Employer.COLUMN_NAME,
-                SampleDBContract.Employer.COLUMN_DESCRIPTION,
-                SampleDBContract.Employer.COLUMN_FOUNDED_DATE
-        };
+        String[] selectionArgs = {"%" + name + "%", "%" + desc + "%"};
 
-        String selection =
-                SampleDBContract.Employer.COLUMN_NAME + " like ? and " +
-                        SampleDBContract.Employer.COLUMN_FOUNDED_DATE + " > ? and " +
-                        SampleDBContract.Employer.COLUMN_DESCRIPTION + " like ?";
-
-        String[] selectionArgs = {"%" + name + "%", date + "", "%" + desc + "%"};
-
-        Cursor cursor = database.query(
-                SampleDBContract.Employer.TABLE_NAME,     // The table to query
-                projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                             // don't group the rows
-                null,                              // don't filter by row groups
-                null                              // don't sort
-        );
-
+        Cursor cursor = database.rawQuery(SampleDBContract.SELECT_EMPLOYER, selectionArgs);
         binding.recycleView.setAdapter(new SampleRecyclerViewCursorAdapter(this, cursor));
+
+        //if the search returns only 1 row, activate the delete and update buttons
+        if(binding.recycleView.getAdapter().getItemCount() == 1){
+            binding.deleteButton.setVisibility(View.VISIBLE);
+        }else{
+            binding.deleteButton.setVisibility(View.INVISIBLE);
+        }
+
     }
 }
