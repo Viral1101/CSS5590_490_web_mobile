@@ -2,6 +2,7 @@ package com.vijaya.sqlite;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.databinding.Bindable;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -61,6 +62,10 @@ public class SampleJoinRecyclerViewCursorAdapter extends RecyclerView.Adapter<Sa
 
 
         }
+    }
+
+    public String getRow(){
+        return mCursor.getString(mCursor.getColumnIndexOrThrow(SampleDBContract.Employee._ID));
     }
 
     @Override

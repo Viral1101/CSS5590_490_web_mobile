@@ -53,6 +53,10 @@ public class SampleRecyclerViewCursorAdapter extends RecyclerView.Adapter<Sample
         }
     }
 
+    public String getID(){
+        return mCursor.getString(mCursor.getColumnIndexOrThrow(SampleDBContract.Employer._ID));
+    }
+
     @Override
     public int getItemCount() {
         return mCursor.getCount();

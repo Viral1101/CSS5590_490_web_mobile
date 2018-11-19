@@ -23,6 +23,7 @@ public class EmployerActivity extends AppCompatActivity {
 
     private static final String TAG = "EmployerActivity";
     private ActivityEmployerBinding binding;
+    private String rowID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,37 +52,67 @@ public class EmployerActivity extends AppCompatActivity {
                 deleteFromDB();
             }
         });
-/*
+
         binding.updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateDB();
             }
         });
-*/
+
     }
 
     private void updateDB(){
 
+        SQLiteDatabase database = new SampleDBSQLiteHelper(this).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SampleDBContract.Employer.COLUMN_NAME, binding.nameEditText.getText().toString());
+        values.put(SampleDBContract.Employer.COLUMN_DESCRIPTION, binding.descEditText.getText().toString());
+
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime((new SimpleDateFormat("dd/MM/yyyy")).parse(
+                    binding.foundedEditText.getText().toString()));
+            long date = calendar.getTimeInMillis();
+            values.put(SampleDBContract.Employer.COLUMN_FOUNDED_DATE, date);
+        } catch (Exception e) {
+            Log.e(TAG, "Error", e);
+            Toast.makeText(this, "Date is in the wrong format", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //Construct the update format using the rowID set by readDB function
+        int success = database.update(SampleDBContract.Employer.TABLE_NAME, values,
+                "_id=?", new String[]{rowID} );
+
+        if(success!=0){
+            Toast.makeText(this, "Updated Row Id: " + rowID, Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Update Failed", Toast.LENGTH_LONG).show();
+        }
+
+        //Refresh the recyclerView
+        readFromDB();
     }
 
     private void deleteFromDB(){
-        String name = binding.nameEditText.getText().toString();
-        String desc = binding.descEditText.getText().toString();
 
         SQLiteDatabase database = new SampleDBSQLiteHelper(this).getWritableDatabase();
 
         String selection =
-                SampleDBContract.Employer.COLUMN_NAME + " like ? and " +
-                        SampleDBContract.Employer.COLUMN_DESCRIPTION + " like ?";
+                SampleDBContract.Employer._ID + " = ? ";
 
-        String[] selectionArgs = {"%" + name + "%", "%" + desc + "%"};
+        String[] selectionArgs = {rowID};
 
-        long newRowId = database.delete(SampleDBContract.Employer.TABLE_NAME, selection, selectionArgs);
+        long success = database.delete(SampleDBContract.Employer.TABLE_NAME, selection, selectionArgs);
         readFromDB();
 
-        Toast.makeText(this, "Deleted Row Id: " + newRowId, Toast.LENGTH_LONG).show();
-    }
+        //Report if the deletion was successful
+        if (success != 0) {
+            Toast.makeText(this, "Deleted Row Id: " + rowID, Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Delete Failed", Toast.LENGTH_LONG).show();
+        }    }
 
     private void saveToDB() {
         SQLiteDatabase database = new SampleDBSQLiteHelper(this).getWritableDatabase();
@@ -116,12 +147,19 @@ public class EmployerActivity extends AppCompatActivity {
         Cursor cursor = database.rawQuery(SampleDBContract.SELECT_EMPLOYER, selectionArgs);
         binding.recycleView.setAdapter(new SampleRecyclerViewCursorAdapter(this, cursor));
 
-        //if the search returns only 1 row, activate the delete and update buttons
-        if(binding.recycleView.getAdapter().getItemCount() == 1){
+        if(cursor.getCount() == 1){
+            //move the cursor to the first (and only item)
+            cursor.moveToFirst();
+            //save the ID to update the row if desired
+            rowID = Long.toString(cursor.getLong(cursor.getColumnIndexOrThrow(SampleDBContract.Employer._ID)));
+            //make the buttons visible to allow delete and update functions
             binding.deleteButton.setVisibility(View.VISIBLE);
-        }else{
-            binding.deleteButton.setVisibility(View.INVISIBLE);
-        }
+            binding.updateButton.setVisibility(View.VISIBLE);
 
+        }else{
+            //hide the buttons to disable the delete and update functions
+            binding.deleteButton.setVisibility(View.INVISIBLE);
+            binding.updateButton.setVisibility(View.INVISIBLE);
+        }
     }
 }

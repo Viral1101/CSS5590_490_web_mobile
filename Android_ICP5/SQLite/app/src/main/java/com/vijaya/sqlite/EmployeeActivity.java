@@ -1,10 +1,12 @@
 package com.vijaya.sqlite;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,17 +23,16 @@ public class EmployeeActivity extends AppCompatActivity {
 
     private ActivityEmployeeBinding binding;
     private static final String TAG = "EmployeeActivity";
-    private int rowID;
+    private String rowID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_employee);
-        rowID = 0;
 
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
 
-        String[] queryCols = new String[]{"_id", SampleDBContract.Employer.COLUMN_NAME};
+        String[] queryCols = new String[]{SampleDBContract.Employer._ID, SampleDBContract.Employer.COLUMN_NAME};
         String[] adapterCols = new String[]{SampleDBContract.Employer.COLUMN_NAME};
         int[] adapterRowViews = new int[]{android.R.id.text1};
 
@@ -65,6 +66,7 @@ public class EmployeeActivity extends AppCompatActivity {
             }
         });
 
+        //Bind the delete function to the delete button
         binding.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +74,7 @@ public class EmployeeActivity extends AppCompatActivity {
             }
         });
 
+        //Bind the delete function to the delete button
         binding.updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +84,10 @@ public class EmployeeActivity extends AppCompatActivity {
     }
 
     private void updateDB(){
+
         SQLiteDatabase database = new SampleDBSQLiteHelper(this).getWritableDatabase();
+
+        //Save the field values for insertion into the query
         ContentValues values = new ContentValues();
         values.put(SampleDBContract.Employee.COLUMN_FIRSTNAME, binding.firstnameEditText.getText().toString());
         values.put(SampleDBContract.Employee.COLUMN_LASTNAME, binding.lastnameEditText.getText().toString());
@@ -92,6 +98,7 @@ public class EmployeeActivity extends AppCompatActivity {
         Log.d("getINT", ((Cursor) binding.employerSpinner.getSelectedItem()).getInt(0) + "");
         Log.d("getColumnName", ((Cursor) binding.employerSpinner.getSelectedItem()).getColumnName(0));
 
+        //Error checking for proper date format
         try {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime((new SimpleDateFormat("dd/MM/yyyy")).parse(
@@ -109,29 +116,40 @@ public class EmployeeActivity extends AppCompatActivity {
             return;
         }
 
-        int newRowId = database.update(SampleDBContract.Employee.TABLE_NAME, values,
-                "_id=?", new String[]{Integer.toString(rowID)} );
-        Toast.makeText(this, "Deleted Row Id: " + newRowId, Toast.LENGTH_LONG).show();
+        //Construct the update format using the rowID set by readDB function
+        int success = database.update(SampleDBContract.Employee.TABLE_NAME, values,
+                "_id=?", new String[]{rowID} );
+
+        if(success!=0){
+            Toast.makeText(this, "Updated Row Id: " + rowID, Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Update Failed", Toast.LENGTH_LONG).show();
+        }
+
+        //Refresh the recyclerView
         readFromDB();
     }
 
     private void deleteFromDB(){
-        String firstname = binding.firstnameEditText.getText().toString();
-        String lastname = binding.lastnameEditText.getText().toString();
 
         SQLiteDatabase database = new SampleDBSQLiteHelper(this).getReadableDatabase();
 
-        String selection =
-                SampleDBContract.Employee.COLUMN_FIRSTNAME + " like ? and " +
-                        SampleDBContract.Employee.COLUMN_LASTNAME + " like ?";
+        String selection = SampleDBContract.Employee._ID + "=?";
 
-        String[] selectionArgs = {"%" + firstname + "%", "%" + lastname + "%"};
+        String[] selectionArgs = new String[]{rowID};
 
-        long newRowId = database.delete(SampleDBContract.Employee.TABLE_NAME, selection, selectionArgs);
+        //construct the delete query
+        long success = database.delete(SampleDBContract.Employee.TABLE_NAME, selection, selectionArgs);
 
+        //Report if the deletion was successful
+        if (success != 0) {
+            Toast.makeText(this, "Deleted Row Id: " + rowID, Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Delete Failed", Toast.LENGTH_LONG).show();
+        }
+
+        //refresh the page
         readFromDB();
-
-        Toast.makeText(this, "Deleted Row Id: " + newRowId, Toast.LENGTH_LONG).show();
     }
 
     private void saveToDB() {
@@ -179,12 +197,18 @@ public class EmployeeActivity extends AppCompatActivity {
         binding.recycleView.setAdapter(new SampleJoinRecyclerViewCursorAdapter(this, cursor));
 
         //if the search returns only 1 row, activate the delete and update buttons
-        if(binding.recycleView.getAdapter().getItemCount() == 1){
-            rowID = cursor.getColumnIndexOrThrow(SampleDBContract.Employee._ID);
+        if(cursor.getCount() == 1){
+            //cursor = database.rawQuery(SampleDBContract.GET_EMPLOYEE_ID, selectionArgs);
+            cursor.moveToLast();
+            //save the ID to update the row if desired
+            rowID = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("ee._id")));
+            //make the buttons visible to allow delete and update functions
             binding.deleteButton.setVisibility(View.VISIBLE);
             binding.updateButton.setVisibility(View.VISIBLE);
 
         }else{
+            //hide the buttons to disable the delete and update functions
+            rowID = "";
             binding.deleteButton.setVisibility(View.INVISIBLE);
             binding.updateButton.setVisibility(View.INVISIBLE);
 

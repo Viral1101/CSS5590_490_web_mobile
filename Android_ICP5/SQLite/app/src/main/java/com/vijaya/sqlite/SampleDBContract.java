@@ -4,18 +4,20 @@ import android.provider.BaseColumns;
 
 public final class SampleDBContract {
 
-    public static final String GET_EMPLOYEE_ID = "SELECT " + Employee._ID + " FROM " + Employee.TABLE_NAME
+    public static final String GET_EMPLOYEE_ID = "SELECT " + Employee._ID + " as rowID FROM " + Employee.TABLE_NAME
             + " WHERE " + Employee.COLUMN_FIRSTNAME + " like ? AND " + Employee.COLUMN_LASTNAME + " like ?";
 
     public static final String GET_EMPLOYER_ID = "SELECT " + Employer._ID + " FROM " + Employer.TABLE_NAME
             + " WHERE " + Employer.COLUMN_NAME + " like ? AND " + Employer.COLUMN_DESCRIPTION + " like ?";
 
-    public static final String SELECT_EMPLOYEE_WITH_EMPLOYER = "SELECT * " +
-            "FROM " + Employee.TABLE_NAME + " ee INNER JOIN " + Employer.TABLE_NAME + " er " +
+    public static final String SELECT_EMPLOYEE_WITH_EMPLOYER = "SELECT ee.*, er." + Employer._ID +
+            " as e_id, " + Employer.COLUMN_NAME + ", " + Employer.COLUMN_DESCRIPTION + ", " +
+            Employer.COLUMN_FOUNDED_DATE + " FROM " + Employee.TABLE_NAME + " ee INNER JOIN " +
+            Employer.TABLE_NAME + " er " +
             "ON ee." + Employee.COLUMN_EMPLOYER_ID + " = er." + Employer._ID + " WHERE " +
             "ee." + Employee.COLUMN_FIRSTNAME + " like ? AND ee." + Employee.COLUMN_LASTNAME + " like ?";
 
-    public static final String SELECT_EMPLOYER = "SELECT * " +
+    public static final String SELECT_EMPLOYER = "SELECT  * " +
             "FROM " + Employer.TABLE_NAME + " er " +
             " WHERE " + "er." + Employer.COLUMN_NAME + " like ? AND er." + Employer.COLUMN_DESCRIPTION + " like ?";
 
@@ -24,6 +26,7 @@ public final class SampleDBContract {
 
     public static class Employer implements BaseColumns {
         public static final String TABLE_NAME = "employer";
+        public static final String _ID = "_id";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_FOUNDED_DATE = "date";
@@ -38,6 +41,7 @@ public final class SampleDBContract {
 
     public static class Employee implements BaseColumns {
         public static final String TABLE_NAME = "employee";
+        //public static final String _ID = "_id";
         public static final String COLUMN_FIRSTNAME = "firstname";
         public static final String COLUMN_LASTNAME = "lastname";
         public static final String COLUMN_DATE_OF_BIRTH = "date_of_birth";

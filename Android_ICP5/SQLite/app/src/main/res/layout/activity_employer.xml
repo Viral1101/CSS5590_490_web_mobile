@@ -78,9 +78,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/foundedInputLayout"
-                android:layout_marginLeft="106dp"
+                android:layout_marginLeft="90dp"
                 android:layout_marginBottom="30dp"
                 android:text="@string/delete"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foundedInputLayout"
+                android:layout_marginLeft="175dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/update"
                 android:visibility="invisible" />
 
             <android.support.v7.widget.RecyclerView
