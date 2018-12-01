@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A login screen that offers login via email/password.
@@ -94,13 +96,30 @@ public class LoginActivity extends AppCompatActivity {
                             // there was an error
                             Toast.makeText(LoginActivity.this, getString(R.string.auth_fail_msg), Toast.LENGTH_LONG).show();
 
-                        } else {
+                        } else{
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
                         }
                     }
                 });
+
+        FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                } else {
+                    startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+                }
+
+            }
+        };
+
+        auth.addAuthStateListener(mAuthListener);
+
     }
 
     private boolean isEmailValid(String email) {

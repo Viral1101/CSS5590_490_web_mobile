@@ -22,4 +22,5 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent redirect = new Intent(WelcomeActivity.this, LoginActivity.class);
         startActivity(redirect);
     }
+
 }

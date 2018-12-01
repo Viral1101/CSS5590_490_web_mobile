@@ -1,6 +1,8 @@
 package com.vijaya.firebase;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView txtDetails;
     private EditText inputName, inputPhone;
     private Button btnSave;
+    private Button btnLogout;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
 
@@ -31,6 +37,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser == null){
+            logout();
+        }
+
         // Displaying toolbar icon
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
@@ -39,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         inputName = (EditText) findViewById(R.id.name);
         inputPhone = (EditText) findViewById(R.id.phone);
         btnSave = (Button) findViewById(R.id.btn_save);
+        btnLogout = (Button) findViewById(R.id.btn_logout);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
@@ -83,7 +95,23 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
         toggleButton();
+    }
+
+    //Log the user out
+    private void logout(){
+
+        FirebaseAuth.getInstance(mFirebaseInstance.getApp()).signOut();
+        Intent redirect = new Intent(HomeActivity.this, WelcomeActivity.class);
+        startActivity(redirect);
+
     }
 
     // Changing button text
